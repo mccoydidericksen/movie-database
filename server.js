@@ -7,7 +7,6 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Connect to database
 const db = mysql.createConnection(
   {
     host: 'localhost',
@@ -50,12 +49,23 @@ app.delete('/api/movie/:id', (req, res) => {
 });
 
 app.get('/api/movie-reviews', (req, res) => {
-    //TODO: add join query
+    db.query("SELECT m.movie_name as 'Movie Name', r.review FROM movies m JOIN reviews r on m.id = r.movie_id;", (err, results) => {
+      if (err) {
+          console.log(err);
+        }
+      console.table(results);
+      res.json(results);
+  }) 
 });
 
 app.put('/api/review/:id', (req, res) => {
-    //TODO: add update query
-    console.log(req.params);
+    db.query("UPDATE reviews SET review =? WHERE id=?;", [req.body.review, req.params.id], (err, results) => {
+      if (err) {
+          console.log(err);
+        } else {
+          res.send("Review Successfully Updated!")
+        }
+  })
 });
 
 app.use((req, res) => {
