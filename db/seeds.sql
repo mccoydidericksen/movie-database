@@ -8,7 +8,7 @@ VALUES ('Avatar: The Way of Water'),
 INSERT INTO reviews (movie_id, review)
 VALUES (1, "I have seen so many movies and no one is perfect but I can say this movie is one of the best productions I have seen in years."),
        (1, "An astonishing achievement in long-form visual effects, but not in storytelling."),
-       (2 "After seeing this in the theater, I definitely have some things to say about this horror flick including my thoughts."),
+       (2, "After seeing this in the theater, I definitely have some things to say about this horror flick including my thoughts."),
        (2, "At the heart of this film is entertainment it knows what it is, it knows what its job is, and it does that flawlessly."),
        (3, "PLANE is an almost perfect movie."),
        (3, "Overall, it is an okay film that passes the time."),

@@ -19,16 +19,34 @@ const db = mysql.createConnection(
 );
 
 app.post('/api/add-movie', (req, res) => {
-    //TODO: add db query
+    db.query("INSERT INTO movies(movie_name) VALUES(?)", req.body.movie_name, (err, results) => {
+        if (err) {
+            console.log(err);
+          } else {
+            res.send("Movie Successfully Added!")
+          }
+    })
 });
 
 app.get('/api/movies', (req, res) => {
-    //TODO: add db query
+    db.query("SELECT movie_name as 'Movie Name' FROM movies;", (err, results) => {
+        if (err) {
+            console.log(err);
+          }
+        console.table(results);
+        res.json(results);
+    }) 
 });
 
 app.delete('/api/movie/:id', (req, res) => {
-    //TODO: add delete query
     console.log(req.params);
+    db.query("DELETE FROM movies WHERE id=?;", req.params.id, (err, results) => {
+        if (err) {
+            console.log(err);
+          } else {
+            res.send("Movie Successfully Deleted!")
+          }
+    })
 });
 
 app.get('/api/movie-reviews', (req, res) => {
